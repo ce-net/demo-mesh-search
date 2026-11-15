@@ -1,0 +1,44 @@
+# docs-retrieve query, same keys as the page, 2026-11-15T10:08:05Z
+$ docs-retrieve query --grant <guest key> --door <ARM cloud server door> gearbox
+ARM cloud server | docs.retrieve@1 v0.1.0 | ranker: lexical + EmbeddingGemma (search.embed@1 on this device) | scopes: public | cell 0.08 ms, round trip 0.1 ms (connect 1.5 ms)
+  demo.pages     matched  3 before the cap filter,  2 after (1 stayed on the device)
+  factory.docs   matched  8 before the cap filter,  4 after (4 stayed on the device)
+  [0.692] public   factory.docs / fd-001  Gearbox assembly cell: station overview
+  [0.691] public   factory.docs / fd-002  Gearbox end-of-line test
+  [0.682] public   factory.docs / fd-009  Gearbox oil fill and level check
+  [0.449] public   demo.pages / dp-001  Demo: search everything you are allowed to see
+  [0.446] public   factory.docs / fd-008  Final assembly: drivetrain marriage
+  [0.380] public   demo.pages / dp-002  Demo: the car factory twin
+
+$ docs-retrieve query --grant <guest key> --door <x86 desktop door> gearbox
+x86 desktop | docs.retrieve@1 v0.1.0 | ranker: lexical (this device runs no embedder) | scopes: public | cell 0.24 ms, round trip 37.3 ms (connect 75.5 ms)
+  twin.records   matched  6 before the cap filter,  3 after (3 stayed on the device)
+  [0.840] public   twin.records / tw-1001  Twin record: gearbox station 14 state
+  [0.840] public   twin.records / tw-1002  Twin record: AGV 7 carrying gearbox pallet
+  [0.800] public   twin.records / tw-1006  Twin record: gearbox end-of-line test bench 2
+
+$ docs-retrieve query --grant <engineer key> --door <ARM cloud server door> gearbox
+ARM cloud server | docs.retrieve@1 v0.1.0 | ranker: lexical + EmbeddingGemma (search.embed@1 on this device) | scopes: engineer,public | cell 0.09 ms, round trip 0.3 ms (connect 2.7 ms)
+  demo.pages     matched  3 before the cap filter,  3 after (0 stayed on the device)
+  factory.docs   matched  8 before the cap filter,  8 after (0 stayed on the device)
+  [0.692] public   factory.docs / fd-001  Gearbox assembly cell: station overview
+  [0.691] public   factory.docs / fd-002  Gearbox end-of-line test
+  [0.682] public   factory.docs / fd-009  Gearbox oil fill and level check
+  [0.677] engineer factory.docs / fd-007  Gearbox line downtime root cause, week 45 (engineer)
+  [0.661] engineer factory.docs / fd-003  Gearbox torque spec, end cover bolts (engineer)
+  [0.653] engineer factory.docs / fd-010  Gearbox cost breakdown per unit (engineer)
+  [0.637] engineer factory.docs / fd-004  Gearbox synchro ring supplier deviation 2026-11 (engineer)
+  [0.449] public   demo.pages / dp-001  Demo: search everything you are allowed to see
+  [0.446] public   factory.docs / fd-008  Final assembly: drivetrain marriage
+  [0.389] engineer demo.pages / dp-004  Demo engineer notes: what the guest key cannot see (engineer)
+
+$ docs-retrieve query --grant <engineer key> --door <x86 desktop door> gearbox
+x86 desktop | docs.retrieve@1 v0.1.0 | ranker: lexical (this device runs no embedder) | scopes: engineer,public | cell 0.33 ms, round trip 40.2 ms (connect 77.1 ms)
+  twin.records   matched  6 before the cap filter,  6 after (0 stayed on the device)
+  [0.840] public   twin.records / tw-1001  Twin record: gearbox station 14 state
+  [0.840] public   twin.records / tw-1002  Twin record: AGV 7 carrying gearbox pallet
+  [0.840] engineer twin.records / tw-1005  Twin record: gearbox warranty returns, last 30 days (engineer)
+  [0.800] engineer twin.records / tw-1003  Twin record: gearbox station 15 torque trace (engineer)
+  [0.800] public   twin.records / tw-1006  Twin record: gearbox end-of-line test bench 2
+  [0.800] engineer twin.records / tw-1008  Twin record: gearbox line shift handover (engineer)
+

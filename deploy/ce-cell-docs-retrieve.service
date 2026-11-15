@@ -1,0 +1,15 @@
+# demo-mesh-search: docs.retrieve@1 holder (factory.docs, demo.pages); ~/dev/demo-mesh-search
+[Unit]
+Description=docs.retrieve cell (demo-mesh-search holder)
+After=ce-door.service
+
+[Service]
+ExecStart=%h/.local/share/ce/cells/docs-retrieve-0.1.0 serve
+Environment=CE_CELL=docs.retrieve
+Environment=CE_CELL_VERSION=0.1.0
+Environment="DOCS_RETRIEVE_DEVICE=ARM cloud server"
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target

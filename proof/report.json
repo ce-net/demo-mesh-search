@@ -1,0 +1,144 @@
+{
+  "at": "2026-11-15T10:07:26.365Z",
+  "query": "gearbox",
+  "sockets": [
+    "<ws-door>/wire",
+    "<ws-door>/wire?at=<peer>"
+  ],
+  "network": {
+    "guest": {
+      "frames": 4,
+      "bytes": 2099,
+      "found": []
+    },
+    "engineer": {
+      "frames": 4,
+      "bytes": 4063,
+      "found": [
+        "fd-003",
+        "fd-004",
+        "fd-007",
+        "fd-010",
+        "dp-004",
+        "tw-1003",
+        "tw-1005",
+        "tw-1008",
+        "(engineer)"
+      ]
+    }
+  },
+  "guest": {
+    "key": "guest",
+    "q": "gearbox",
+    "answers": [
+      {
+        "ok": true,
+        "device": "ARM cloud server",
+        "counts": [
+          {
+            "collection": "demo.pages",
+            "matched": 3,
+            "visible": 2,
+            "hidden": 1
+          },
+          {
+            "collection": "factory.docs",
+            "matched": 8,
+            "visible": 4,
+            "hidden": 4
+          }
+        ],
+        "hits": [
+          "fd-001",
+          "fd-002",
+          "fd-009",
+          "dp-001",
+          "fd-008",
+          "dp-002"
+        ],
+        "took_ms": 0.09,
+        "rtt_ms": 4.0999999940395355
+      },
+      {
+        "ok": true,
+        "device": "x86 desktop",
+        "counts": [
+          {
+            "collection": "twin.records",
+            "matched": 6,
+            "visible": 3,
+            "hidden": 3
+          }
+        ],
+        "hits": [
+          "tw-1001",
+          "tw-1002",
+          "tw-1006"
+        ],
+        "took_ms": 0.39,
+        "rtt_ms": 44.099999994039536
+      }
+    ]
+  },
+  "engineer": {
+    "key": "engineer",
+    "q": "gearbox",
+    "answers": [
+      {
+        "ok": true,
+        "device": "ARM cloud server",
+        "counts": [
+          {
+            "collection": "demo.pages",
+            "matched": 3,
+            "visible": 3,
+            "hidden": 0
+          },
+          {
+            "collection": "factory.docs",
+            "matched": 8,
+            "visible": 8,
+            "hidden": 0
+          }
+        ],
+        "hits": [
+          "fd-001",
+          "fd-002",
+          "fd-009",
+          "fd-007",
+          "fd-003",
+          "fd-010",
+          "fd-004",
+          "dp-001",
+          "fd-008",
+          "dp-004",
+          "dp-002"
+        ],
+        "took_ms": 0.13,
+        "rtt_ms": 1.9000000059604645
+      },
+      {
+        "ok": true,
+        "device": "x86 desktop",
+        "counts": [
+          {
+            "collection": "twin.records",
+            "matched": 6,
+            "visible": 6,
+            "hidden": 0
+          }
+        ],
+        "hits": [
+          "tw-1001",
+          "tw-1002",
+          "tw-1005",
+          "tw-1003",
+          "tw-1006",
+          "tw-1008"
+        ],
+        "took_ms": 0.12,
+        "rtt_ms": 38.70000001788139
+      }
+    ]
+  }
+}

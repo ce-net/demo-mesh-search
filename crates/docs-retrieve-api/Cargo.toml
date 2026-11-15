@@ -1,0 +1,9 @@
+[package]
+name = "docs-retrieve-api"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+description = "Typed API of docs.retrieve@1: search the records one device holds, filtered by the caller's ce-cap grant before ranking (types only)"
+
+[dependencies]
+ce-wire = { git = "https://github.com/Leif-Rydenfalk/rust-stack", rev = "676cb5395c1edd3ffd8bab404ad1ea78715c769e", default-features = false, features = ["codec"] }

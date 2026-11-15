@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#070807">
+<title>Mesh Search</title>
+<meta name="description" content="One query, many devices. Each device checks your key and filters before it ranks, so what you may not see never leaves it.">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="components.css">
+<style>
+  body{margin:0;background:var(--ground);color:var(--ink);font:400 var(--t-md)/1.5 var(--sans)}
+  main{max-width:var(--max);margin:0 auto;padding:28px var(--m) 64px}
+  .top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}
+  .brand{font:500 var(--t-xs) var(--mono);letter-spacing:var(--track-crumb);text-transform:uppercase;color:var(--ink-2)}
+  .lede{color:var(--ink-2);max-width:62ch;margin:6px 0 18px}
+  .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px}
+  form{display:flex;flex:1 1 320px;gap:6px}
+  #q{flex:1;min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);color:var(--ink);
+     font:500 var(--t-base) var(--mono);padding:9px 12px}
+  #q:focus-visible{outline:1px solid var(--acc)}
+  .pills button:disabled{opacity:.4;cursor:not-allowed}
+  #abilities{font:400 var(--t-xs) var(--mono);color:var(--ink-3)}
+  #status{font:400 var(--t-xs) var(--mono);color:var(--ink-2);margin:6px 0 16px;min-height:1.4em}
+  #sources{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:8px;margin-bottom:22px}
+  .src{padding:12px 13px}
+  .num small{font-size:12px;color:var(--ink-2)} .acc{color:var(--acc)}
+  .sub{font:400 10px var(--mono);color:var(--ink-3);margin-top:4px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 8px;font:400 var(--t-xs) var(--mono)}
+  th{font:500 var(--t-2xs) var(--sans);letter-spacing:var(--track-label);text-transform:uppercase;color:var(--ink-3);text-align:left;padding:4px 0}
+  td{border-top:1px solid var(--line);padding:5px 0;font-variant-numeric:tabular-nums} th:not(:first-child),td.n{text-align:right}
+  dl{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;margin:0;font:400 var(--t-xs) var(--mono)}
+  dt{color:var(--ink-3)} dd{margin:0;color:var(--ink-2);text-align:right;overflow-wrap:anywhere}
+  h2{font:500 var(--t-2xs) var(--sans);letter-spacing:var(--track-label);text-transform:uppercase;color:var(--ink-2);margin:0 0 8px}
+  #hits{list-style:none;margin:0;padding:0}
+  .hit{padding:11px 13px;border-top:1px solid var(--line)} .hit:first-child{border-top:0}
+  .meta{display:flex;flex-wrap:wrap;gap:4px 12px;font:400 var(--t-2xs) var(--mono);color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .meta .scope{color:var(--acc)} .meta .score{margin-left:auto}
+  .t{margin-top:3px;font-weight:500} .s{color:var(--ink-2);font-size:var(--t-sm);margin-top:2px}
+  .empty{color:var(--ink-2)}
+  .how{margin-top:26px;color:var(--ink-2);font-size:var(--t-sm);max-width:72ch}
+  .how b{color:var(--ink);font-weight:500}
+  @media (max-width:520px){main{padding:18px 16px 48px}.meta .score{margin-left:0}#sources{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+  <div class="top"><span class="brand">ce-net / demos</span><nav class="btns glass"><button class="btn quiet" id="theme">Theme</button></nav></div>
+  <div class="crumb">Demos / <b>Search</b> / Live</div>
+  <h1 class="display">Search everything you are allowed to see.</h1>
+  <p class="lede">One query goes from this browser to several devices at once. Each device checks the key you present and drops what that key does not reach before it ranks. Hidden records are counted where they live and never sent.</p>
+  <div class="bar">
+    <form id="form"><input id="q" value="gearbox" aria-label="Search" autocomplete="off"><button class="btn primary" type="submit">Search</button></form>
+    <div class="pills" id="keys" role="group" aria-label="Key"></div>
+  </div>
+  <div id="abilities"></div>
+  <div id="status">loading...</div>
+  <section id="sources" aria-label="Devices"></section>
+  <h2>Results <span id="count" class="acc"></span></h2>
+  <ul id="hits" class="glass"></ul>
+  <p class="how"><b>How it works.</b> Each key is a fresh ed25519 keypair with a signed capability chain. The guest chain grants <code>docs.retrieve:search</code>; the engineer chain also grants <code>docs.retrieve:scope:engineer</code>. Your browser signs one Hello per device; each device's gate verifies the chain, and the docs.retrieve cell on it filters by those abilities before scoring. The before and after counts are what each device reports. Open the network tab: with the guest key, no engineer record is in any frame.</p>
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>

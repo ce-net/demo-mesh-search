@@ -1,0 +1,16 @@
+[package]
+name = "docs-retrieve"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+description = "The docs.retrieve@1 cell: the records one device holds, filtered by the caller's ce-cap grant before ranking; hidden records never leave the device"
+
+[dependencies]
+docs-retrieve-api = { path = "../docs-retrieve-api" }
+# std threads, no async runtime (blocking::Server)
+ce-wire = { git = "https://github.com/Leif-Rydenfalk/rust-stack", rev = "676cb5395c1edd3ffd8bab404ad1ea78715c769e", default-features = false, features = ["blocking-door"] }
+ce-gate = { git = "https://github.com/Leif-Rydenfalk/rust-stack", rev = "676cb5395c1edd3ffd8bab404ad1ea78715c769e" }
+# ranking: search.embed@1 (EmbeddingGemma) when this device runs it; lexical alone otherwise
+search-embed-api = { git = "https://github.com/Leif-Rydenfalk/search-embed", rev = "142d19f" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

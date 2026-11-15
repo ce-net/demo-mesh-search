@@ -1,0 +1,10 @@
+[package]
+name = "ws-pipe"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+description = "wire.ws-door's /wire pipe alone (its library, current source), for a node whose installed ws-door predates /wire?at=<peer>: no Mint, no cell registration, adds no authority"
+
+[dependencies]
+wire-ws-door = { git = "https://github.com/Leif-Rydenfalk/wire-ws-door", rev = "aee23dd" }
+tokio = { version = "1", features = ["rt", "net", "macros"] }

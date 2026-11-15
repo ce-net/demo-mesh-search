@@ -1,0 +1,16 @@
+# docs.retrieve@1: the records one device holds, filtered by the caller's ce-cap grant before ranking.
+[cell]
+api = "docs.retrieve"
+kind = "function"
+crate = "docs-retrieve"
+args = ["serve"]
+# ranks with search.embed@1 when this device runs it; lexical alone otherwise (optional, never required)
+depends_on = []
+
+[launch]
+health = "HealthOp"
+start_timeout_ms = 5000
+restart_backoff_ms = [1000, 300000]
+
+[limits]
+disk_bytes = "64M"
