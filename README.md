@@ -86,3 +86,16 @@ and Chromium).
 - `web/`: the page (no framework; ce-net design tokens).
 
 Apache-2.0. Author: Leif Rydenfalk.
+
+## Status of the public page (ce-net.com/demos/search)
+
+The page is staged in the ce-net.com site repo under `demos/search/`. It goes live on the next Pages deploy
+(`sh bin/deploy-cloudflare.sh`, run from that repo where the Cloudflare login exists). It works only after these three steps:
+
+1. **A public wss route** `wss://apps.ce-net.com/demo-search/wire` to a `/wire` pipe that allows `?at=<peer>` for
+   `docs.retrieve` only. wire.ws-door's public listener refuses `at=` today, and the session listener must not face
+   strangers. The fix belongs in wire.ws-door: let `?at=` pass on the public listener for apis listed in
+   `WIRE_WS_PUBLIC_APIS`.
+2. **Keys for strangers.** A grant lasts at most 24 h, so the page needs a small mint route (wire.ws-door `Mint`
+   behind a rate limit) instead of keys pasted into the link.
+3. TLS on ce-wire for any hop that crosses the public internet. In this run both devices are on one private network.

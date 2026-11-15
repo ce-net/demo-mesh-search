@@ -1,6 +1,7 @@
 # docs.retrieve@1: the records one device holds, filtered by the caller's ce-cap grant before ranking.
 [cell]
 api = "docs.retrieve"
+owner = "leif"
 kind = "function"
 crate = "docs-retrieve"
 args = ["serve"]

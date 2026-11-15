@@ -8,7 +8,7 @@ interface KeyDef { id: string; label: string; abilities: string[]; grant: string
 
 const $ = <T extends HTMLElement>(s: string) => document.querySelector(s) as T;
 const frag = new URLSearchParams(location.hash.slice(1));
-const wireBase = frag.get('w') ?? `${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/wire`;
+let wireBase = frag.get('w') ?? `${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/wire`;
 
 function b64u(s: string): Uint8Array {
   const t = atob(s.replace(/-/g, '+').replace(/_/g, '/') + '='.repeat((4 - (s.length % 4)) % 4));
@@ -136,6 +136,7 @@ async function main() {
     try { localStorage.setItem('ce-theme', l ? 'light' : 'dark'); } catch {}
   };
   const cfg = await fetch('sources.json').then((r) => r.json()).catch(() => ({ sources: [{ at: '' }] }));
+  if (!frag.get('w') && cfg.wire) wireBase = cfg.wire;
   sources = (frag.get('src')?.split(',').map((at) => ({ at: at === 'self' ? '' : at })) ?? cfg.sources) as Source[];
   if (!keys[0].grant) {
     $('#status').textContent = 'This link carries no keys. Open it from the link the demo prints (it puts the two keys in the # part, which never leaves your browser).';

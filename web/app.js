@@ -813,6 +813,7 @@ async function main() {
     }
   };
   const cfg = await fetch("sources.json").then((r) => r.json()).catch(() => ({ sources: [{ at: "" }] }));
+  if (!frag.get("w") && cfg.wire) wireBase = cfg.wire;
   sources = frag.get("src")?.split(",").map((at) => ({ at: at === "self" ? "" : at })) ?? cfg.sources;
   if (!keys[0].grant) {
     $("#status").textContent = "This link carries no keys. Open it from the link the demo prints (it puts the two keys in the # part, which never leaves your browser).";
